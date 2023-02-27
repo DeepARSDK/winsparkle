@@ -14,8 +14,6 @@ endif()
 
 cmake_policy(SET CMP0022 NEW)
 
-find_package(Gettext REQUIRED)
-
 get_filename_component(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.. REALPATH)
 
 # Parse version header to always have actual version of winsparkle
@@ -84,24 +82,6 @@ set(SOURCES
 set(PUBLIC_HEADERS
   ${ROOT_DIR}/include/winsparkle.h
   ${ROOT_DIR}/include/winsparkle-version.h)
-
-file(GLOB PO_FILES ${ROOT_DIR}/translations/*.po)
-foreach(PO_FILE ${PO_FILES})
-  get_filename_component(LANG ${PO_FILE} NAME_WLE)
-  add_custom_command(OUTPUT ${LANG}.mo
-                     COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} -c -o ${LANG}.mo ${PO_FILE}
-                     DEPENDS ${PO_FILE}
-  )
-  list(APPEND MO_FILES ${LANG}.mo)
-endforeach()
-
-add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/common_res.o
-                   COMMAND ${CMAKE_RC_COMPILER} -O coff -I${ROOT_DIR}/include -i ${CMAKE_CURRENT_SOURCE_DIR}/common.rc
-                           -o ${CMAKE_CURRENT_BINARY_DIR}/common_res.o
-                   DEPENDS ${MO_FILES}
-)
-
-list(APPEND SOURCES ${CMAKE_CURRENT_BINARY_DIR}/common_res.o)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES} $<TARGET_OBJECTS:wxWidgets> $<TARGET_OBJECTS:expat> $<TARGET_OBJECTS:crypto>)
 
