@@ -83,7 +83,7 @@ set(PUBLIC_HEADERS
   ${ROOT_DIR}/include/winsparkle.h
   ${ROOT_DIR}/include/winsparkle-version.h)
 
-add_library(${PROJECT_NAME} SHARED ${SOURCES} $<TARGET_OBJECTS:wxWidgets> $<TARGET_OBJECTS:expat> $<TARGET_OBJECTS:crypto>)
+add_library(${PROJECT_NAME} STATIC ${SOURCES} $<TARGET_OBJECTS:wxWidgets> $<TARGET_OBJECTS:expat> $<TARGET_OBJECTS:crypto>)
 
 target_link_libraries(${PROJECT_NAME} wininet version rpcrt4 comctl32 crypt32 wsock32 ws2_32 UxTheme Shlwapi)
 
