@@ -16,7 +16,7 @@ cmake_policy(SET CMP0022 NEW)
 
 find_package(Gettext REQUIRED)
 
-get_filename_component(ROOT_DIR ${CMAKE_SOURCE_DIR}/.. REALPATH)
+get_filename_component(ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/.. REALPATH)
 
 # Parse version header to always have actual version of winsparkle
 file(READ "${ROOT_DIR}/include/winsparkle-version.h" VERSION_FILE)
