@@ -6,7 +6,7 @@ endif()
 
 project(WinSparkle)
 
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.17 FATAL_ERROR)
 
 if(NOT MINGW)
   message(FATAL_ERROR "Can be used only with MinGW")
