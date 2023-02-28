@@ -39,12 +39,7 @@
 extern "C" {
 #endif
 
-#ifdef BUILDING_WIN_SPARKLE
-    #define WIN_SPARKLE_API __declspec(dllexport)
-#else
-    #define WIN_SPARKLE_API __declspec(dllimport)
-#endif
-
+#define WIN_SPARKLE_API
 
 /// Return value for boolean functions to indicate unexpected error.
 /// Only used by functions or callbacks that are explicitly documented as using it.
